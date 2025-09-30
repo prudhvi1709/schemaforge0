@@ -170,11 +170,6 @@
                   <i class="bi bi-check-circle me-1"></i>Data Validation
                 </button>
               </li>
-              <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#dbt-tab">
-                  <i class="bi bi-gear me-1"></i>DBT Rules
-                </button>
-              </li>
             </ul>
             <div class="tab-content mt-3">
               <!-- Data Ingestion & Discovery Group -->
@@ -215,6 +210,9 @@
                   <li class="nav-item">
                     <button class="nav-link" data-bs-toggle="pill" data-bs-target="#joins-tab">Joins & Modeling</button>
                   </li>
+                  <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#dbt-tab">DBT Rules</button>
+                  </li>
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="relationships-tab">
@@ -225,6 +223,9 @@
                   </div>
                   <div class="tab-pane fade" id="joins-tab">
                     <div id="joins-content"></div>
+                  </div>
+                  <div class="tab-pane fade" id="dbt-tab">
+                    <div id="dbt-content"></div>
                   </div>
                 </div>
               </div>
@@ -320,10 +321,6 @@
                 </div>
               </div>
 
-              <!-- DBT Rules Tab -->
-              <div class="tab-pane fade" id="dbt-tab">
-                <div id="dbt-content"></div>
-              </div>
             </div>
           </div>
         </div>

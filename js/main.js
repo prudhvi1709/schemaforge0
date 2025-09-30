@@ -603,28 +603,38 @@ function setLoading(action, isLoading) {
 }
 
 function handleDbtRuleUpdate(fullResponse, cleanResponse) {
-  const tab = document.querySelector('[data-bs-target="#dbt-tab"]');
-  if (!tab?.click) return;
+  // First navigate to Data Modeling group
+  const modelingGroupTab = document.querySelector('[data-bs-target="#modeling-group"]');
+  if (!modelingGroupTab?.click) return;
   
-  tab.click();
+  modelingGroupTab.click();
+  
+  // Then navigate to DBT Rules subtab
   setTimeout(() => {
-    let tableName = fullResponse.match(/<!-- LAST_MODIFIED_TABLE:([^\s]+) -->/s)?.[1];
-    let target = null;
-    
-    if (tableName) {
-      target = Array.from(document.querySelectorAll('.card-header h5'))
-        .find(card => card.textContent.includes(tableName))?.closest('.card');
+    const dbtTab = document.querySelector('[data-bs-target="#dbt-tab"]');
+    if (dbtTab?.click) {
+      dbtTab.click();
+      
+      setTimeout(() => {
+        let tableName = fullResponse.match(/<!-- LAST_MODIFIED_TABLE:([^\s]+) -->/s)?.[1];
+        let target = null;
+        
+        if (tableName) {
+          target = Array.from(document.querySelectorAll('.card-header h5'))
+            .find(card => card.textContent.includes(tableName))?.closest('.card');
+        }
+        
+        if (!target) {
+          tableName = cleanResponse.match(/(?:Added new rule|Modified rule) for table ['']([^']+)['']]/)?.[1];
+          if (tableName) {
+            target = Array.from(document.querySelectorAll('.card-header h5'))
+              .find(card => card.textContent.includes(tableName))?.closest('.card');
+          }
+        }
+        
+        (target || document.getElementById('dbt-content'))?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
     }
-    
-    if (!target) {
-      tableName = cleanResponse.match(/(?:Added new rule|Modified rule) for table ['']([^']+)['']]/)?.[1];
-      if (tableName) {
-        target = Array.from(document.querySelectorAll('.card-header h5'))
-          .find(card => card.textContent.includes(tableName))?.closest('.card');
-      }
-    }
-    
-    (target || document.getElementById('dbt-content'))?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, 100);
 }
 

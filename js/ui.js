@@ -31,13 +31,21 @@ export function renderSchemaResults(schemaData) {
   [renderSchemaOverview, renderColumnDescriptions, renderRelationships, renderJoinsAndModeling, renderEntityRelationshipDiagram].forEach(fn => fn(schemaData));
   const dbtTab = document.querySelector('[data-bs-target="#dbt-tab"]');
   const dbtContent = document.getElementById('dbt-content');
-  if (dbtTab && dbtContent) { dbtTab.style.display = 'none'; render(html`<div class="text-muted">Generate DBT rules first to see this content.</div>`, dbtContent); }
+  if (dbtTab && dbtContent) { 
+    dbtTab.style.display = 'none'; 
+    dbtTab.parentElement.style.display = 'none'; // Hide the nav-item containing the DBT tab
+    render(html`<div class="text-muted">Generate DBT rules first to see this content.</div>`, dbtContent); 
+  }
 }
 
 export function renderResults(schemaData, dbtRulesData) {
   renderSchemaResults(schemaData);
   renderDbtRules(dbtRulesData);
-  document.querySelector('[data-bs-target="#dbt-tab"]')?.style.setProperty('display', 'block');
+  const dbtTab = document.querySelector('[data-bs-target="#dbt-tab"]');
+  if (dbtTab) {
+    dbtTab.style.setProperty('display', 'block');
+    dbtTab.parentElement.style.setProperty('display', 'block'); // Show the nav-item containing the DBT tab
+  }
 }
 
 export function renderSchemaOverview(schemaData) {
