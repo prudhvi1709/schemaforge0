@@ -118,21 +118,6 @@ graph TB
     DIAGRAM --> RENDER
     INGEST --> RENDER
     LOCAL --> USER
-    
-    %% Styling
-    classDef userLayer fill:#e1f5fe
-    classDef coreLayer fill:#f3e5f5
-    classDef featureLayer fill:#e8f5e8
-    classDef externalLayer fill:#fff3e0
-    classDef dataLayer fill:#fce4ec
-    classDef storageLayer fill:#f1f8e9
-    
-    class UI,MAIN userLayer
-    class PARSER,LLM,RENDER coreLayer
-    class DBT,DIAGRAM,COMP,INGEST,LOCAL featureLayer
-    class OPENAI,ROUTER,OLLAMA,CUSTOM externalLayer
-    class CSV,EXCEL,SAMPLE,ATTACH dataLayer
-    class LOCALSTORAGE,MEMORY storageLayer
 ```
 
 ### Data Processing Flow
