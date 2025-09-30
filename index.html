@@ -153,55 +153,91 @@
             </div>
           </div>
           <div class="card-body">
-            <ul class="nav nav-tabs" id="result-tabs">
+            <!-- Main Tab Groups -->
+            <ul class="nav nav-tabs" id="main-tabs">
               <li class="nav-item">
-                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#schema-tab">Schema Overview</button>
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#discovery-group">
+                  <i class="bi bi-search me-1"></i>Data Ingestion & Discovery
+                </button>
               </li>
               <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#columns-tab">Column Descriptions</button>
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#modeling-group">
+                  <i class="bi bi-diagram-3 me-1"></i>Data Modeling
+                </button>
               </li>
               <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#relationships-tab">Relationships</button>
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#validation-group">
+                  <i class="bi bi-check-circle me-1"></i>Data Validation
+                </button>
               </li>
               <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#diagram-tab">ER Diagram</button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#joins-tab">Joins & Modeling</button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#dbt-tab">DBT Rules</button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#ingestion-tab">Data Ingestion</button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#comparator-tab">Data Comparator</button>
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#dbt-tab">
+                  <i class="bi bi-gear me-1"></i>DBT Rules
+                </button>
               </li>
             </ul>
             <div class="tab-content mt-3">
-              <div class="tab-pane fade show active" id="schema-tab">
-                <div id="schema-content"></div>
+              <!-- Data Ingestion & Discovery Group -->
+              <div class="tab-pane fade show active" id="discovery-group">
+                <ul class="nav nav-pills mb-3" id="discovery-subtabs">
+                  <li class="nav-item">
+                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#schema-tab">Schema Overview</button>
+                  </li>
+                  <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#columns-tab">Column Descriptions</button>
+                  </li>
+                  <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#ingestion-tab">Data Ingestion</button>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="schema-tab">
+                    <div id="schema-content"></div>
+                  </div>
+                  <div class="tab-pane fade" id="columns-tab">
+                    <div id="columns-content"></div>
+                  </div>
+                  <div class="tab-pane fade" id="ingestion-tab">
+                    <div id="ingestion-content"></div>
+                  </div>
+                </div>
               </div>
-              <div class="tab-pane fade" id="columns-tab">
-                <div id="columns-content"></div>
+
+              <!-- Data Modeling Group -->
+              <div class="tab-pane fade" id="modeling-group">
+                <ul class="nav nav-pills mb-3" id="modeling-subtabs">
+                  <li class="nav-item">
+                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#relationships-tab">Relationships</button>
+                  </li>
+                  <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#diagram-tab">ER Diagram</button>
+                  </li>
+                  <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#joins-tab">Joins & Modeling</button>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="relationships-tab">
+                    <div id="relationships-content"></div>
+                  </div>
+                  <div class="tab-pane fade" id="diagram-tab">
+                    <div id="diagram-content"></div>
+                  </div>
+                  <div class="tab-pane fade" id="joins-tab">
+                    <div id="joins-content"></div>
+                  </div>
+                </div>
               </div>
-              <div class="tab-pane fade" id="relationships-tab">
-                <div id="relationships-content"></div>
-              </div>
-              <div class="tab-pane fade" id="diagram-tab">
-                <div id="diagram-content"></div>
-              </div>
-              <div class="tab-pane fade" id="joins-tab">
-                <div id="joins-content"></div>
-              </div>
-              <div class="tab-pane fade" id="dbt-tab">
-                <div id="dbt-content"></div>
-              </div>
-              <div class="tab-pane fade" id="ingestion-tab">
-                <div id="ingestion-content"></div>
-              </div>
-              <div class="tab-pane fade" id="comparator-tab">
+
+              <!-- Data Validation Group -->
+              <div class="tab-pane fade" id="validation-group">
+                <ul class="nav nav-pills mb-3" id="validation-subtabs">
+                  <li class="nav-item">
+                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#comparator-tab">Data Comparator</button>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="comparator-tab">
                 <div id="comparator-content">
                   <!-- Comparator Content -->
                   <div class="row">
@@ -280,7 +316,13 @@
                       </div>
                     </div>
                   </div>
+                  </div>
                 </div>
+              </div>
+
+              <!-- DBT Rules Tab -->
+              <div class="tab-pane fade" id="dbt-tab">
+                <div id="dbt-content"></div>
               </div>
             </div>
           </div>
